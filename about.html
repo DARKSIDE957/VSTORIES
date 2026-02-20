@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'">
+<title>About - VStories</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a class="brand" href="index.html">VSTORIES</a>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="stories.html">Stories</a>
+    </nav>
+  </div>
+ </header>
+<main class="section">
+  <div class="container" style="max-width:740px">
+    <h1 class="title" style="font-size:2rem">About Me</h1>
+    <div class="prose">
+      <p>I&apos;m <span style="color:var(--primary)">Virus</span> - a name that reflects my fascination with the hidden and the mysterious, both in technology and storytelling.</p>
+      <p>I hold a high diploma in Cyber Security, which has given me a unique lens through which to view the world. While I’ve chosen not to pursue that field professionally, the discipline and mindset it required continue to shape the way I approach creativity and problem-solving.</p>
+      <p>My true calling, however, is writing. I craft stories that dive deep into emotion, morality, and the choices that define us. My debut story, <em>The Road to Hell</em>, marks the beginning of my journey as an author - a tale born from imagination, personal reflection, and a love for powerful narratives.</p>
+      <p>More stories are already on the way, each one exploring new worlds, characters, and ideas. If you&apos;re looking for thoughtful storytelling and raw human experiences brought to life through words, you&apos;re in the right place.</p>
+      <p class="muted">Welcome to my world.</p>
+    </div>
+  </div>
+ </main>
+<footer class="footer">
+  <div class="container">© <span id="year"></span> VStories</div>
+</footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

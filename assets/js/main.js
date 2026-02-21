@@ -51,10 +51,31 @@
     $('#story-tags').innerHTML = story.tags.map(t => `<span class="tag">#${escapeHTML(t)}</span>`).join('')
   }
 
+  const installProgress = () => {
+    const isStaticStory = /\/stories\//i.test(location.pathname)
+    if (!isStaticStory) return
+    const bar = document.createElement('div')
+    bar.className = 'progress'
+    const inner = document.createElement('div')
+    inner.className = 'progress-inner'
+    bar.appendChild(inner)
+    document.body.appendChild(bar)
+    const update = () => {
+      const st = document.documentElement.scrollTop || document.body.scrollTop
+      const h = (document.documentElement.scrollHeight - document.documentElement.clientHeight)
+      const pct = Math.max(0, Math.min(100, h > 0 ? (st / h) * 100 : 0))
+      inner.style.width = pct + '%'
+    }
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    update()
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     mountIndex()
     mountStories()
     mountStory()
+    installProgress()
     // Floating "All Stories" button
     try {
       const isStories = /(?:^|\/)stories\.html$/i.test(location.pathname)

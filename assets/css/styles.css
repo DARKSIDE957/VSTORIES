@@ -39,6 +39,7 @@ a{color:inherit;text-decoration:none}
 .prose h3{font-size:1.2rem;line-height:1.35;margin:.9rem 0 .4rem}
 .prose p{margin:.7rem 0}
 .prose{max-width:75ch;margin-inline:auto}
+.prose:lang(ar), body[dir=rtl] .prose{direction:rtl;text-align:right}
 .muted{color:var(--muted)}
 .section{padding:2rem 0}
 .fab-stories{position:fixed;right:20px;bottom:20px;background:var(--primary);color:#000;font-weight:800;border-radius:9999px;padding:.8rem 1.05rem;border:0;box-shadow:0 0 22px rgba(255,0,0,.38);transition:transform .15s ease, box-shadow .2s}
@@ -48,6 +49,8 @@ a{color:inherit;text-decoration:none}
 .story-btn::after{content:"›";margin-left:auto;color:var(--muted);transition:transform .12s,color .2s}
 .story-btn:hover{box-shadow:0 0 22px rgba(255,0,0,.38);transform:translateY(-1px)}
 .story-btn:hover::after{transform:translateX(2px);color:var(--text)}
+body[dir=rtl] .story-btn{text-align:right}
+body[dir=rtl] .story-btn::after{content:"‹";margin-right:auto;margin-left:0}
 
 ::selection{background:rgba(255,0,0,.35);color:#000}
 :focus-visible{outline:2px solid var(--primary);outline-offset:2px}

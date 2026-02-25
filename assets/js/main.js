@@ -87,16 +87,19 @@
   const injectLangToggle = () => {
     try {
       const nav = document.querySelector('.nav nav')
-      if (!nav || nav.querySelector('#lang-select')) return
-      const sel = document.createElement('select')
-      sel.id = 'lang-select'
-      sel.className = 'input'
-      sel.style.width = 'auto'
-      sel.style.marginLeft = '0.75rem'
-      sel.innerHTML = '<option value=\"en\">EN</option><option value=\"ar\">AR</option>'
+      if (!nav) return
+      let sel = nav.querySelector('#lang-select')
+      if (!sel) {
+        sel = document.createElement('select')
+        sel.id = 'lang-select'
+        sel.className = 'input'
+        sel.style.width = 'auto'
+        sel.style.marginLeft = '0.75rem'
+        sel.innerHTML = '<option value=\"en\">EN</option><option value=\"ar\">AR</option>'
+        nav.appendChild(sel)
+      }
       sel.value = getLang()
-      sel.addEventListener('change', () => { setLang(sel.value); applyLang() })
-      nav.appendChild(sel)
+      sel.onchange = () => { setLang(sel.value); applyLang() }
     } catch {}
   }
 

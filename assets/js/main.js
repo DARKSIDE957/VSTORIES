@@ -105,7 +105,7 @@
       if (secsEl) secsEl.textContent = pad(sec)
       if (label) {
         const y = target.getFullYear()
-        label.textContent = '27 Feb ' + y
+        label.textContent = 'Virus — 27 Feb ' + y
       }
     }
     render()

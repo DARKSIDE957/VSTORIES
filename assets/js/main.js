@@ -74,9 +74,8 @@
   }
 
   const installBirthdayCountdown = () => {
-    const host = document.getElementById('bday-countdown')
-    if (!host) return
-    const label = document.getElementById('bday-label')
+    const hosts = Array.from(document.querySelectorAll('#bday-countdown, #bday-countdown-mini'))
+    if (!hosts.length) return
     const makeTarget = () => {
       const now = new Date()
       let y = now.getFullYear()
@@ -95,18 +94,21 @@
       const h = Math.floor((s % 86400) / 3600)
       const m = Math.floor((s % 3600) / 60)
       const sec = s % 60
-      const daysEl = host.querySelector('.cd-days .num')
-      const hoursEl = host.querySelector('.cd-hours .num')
-      const minsEl = host.querySelector('.cd-mins .num')
-      const secsEl = host.querySelector('.cd-secs .num')
-      if (daysEl) daysEl.textContent = pad(d)
-      if (hoursEl) hoursEl.textContent = pad(h)
-      if (minsEl) minsEl.textContent = pad(m)
-      if (secsEl) secsEl.textContent = pad(sec)
-      if (label) {
-        const y = target.getFullYear()
-        label.textContent = 'Virus — 27 Feb ' + y
-      }
+      hosts.forEach(host => {
+        const daysEl = host.querySelector('.cd-days .num')
+        const hoursEl = host.querySelector('.cd-hours .num')
+        const minsEl = host.querySelector('.cd-mins .num')
+        const secsEl = host.querySelector('.cd-secs .num')
+        if (daysEl) daysEl.textContent = pad(d)
+        if (hoursEl) hoursEl.textContent = pad(h)
+        if (minsEl) minsEl.textContent = pad(m)
+        if (secsEl) secsEl.textContent = pad(sec)
+      })
+      const y = target.getFullYear()
+      const L1 = document.getElementById('bday-label')
+      const L2 = document.getElementById('bday-label-mini')
+      if (L1) L1.textContent = 'Virus — 27 Feb ' + y
+      if (L2) L2.textContent = 'Virus — 27 Feb ' + y
     }
     render()
     setInterval(render, 1000)

@@ -73,11 +73,51 @@
     update()
   }
 
+  const installBirthdayCountdown = () => {
+    const host = document.getElementById('bday-countdown')
+    if (!host) return
+    const label = document.getElementById('bday-label')
+    const makeTarget = () => {
+      const now = new Date()
+      let y = now.getFullYear()
+      let t = new Date(y, 1, 27, 0, 0, 0, 0)
+      if (now >= t) t = new Date(y + 1, 1, 27, 0, 0, 0, 0)
+      return t
+    }
+    let target = makeTarget()
+    const pad = (n) => String(n).padStart(2, '0')
+    const render = () => {
+      const now = new Date()
+      if (now >= target) target = makeTarget()
+      const diff = target - now
+      const s = Math.max(0, Math.floor(diff / 1000))
+      const d = Math.floor(s / 86400)
+      const h = Math.floor((s % 86400) / 3600)
+      const m = Math.floor((s % 3600) / 60)
+      const sec = s % 60
+      const daysEl = host.querySelector('.cd-days .num')
+      const hoursEl = host.querySelector('.cd-hours .num')
+      const minsEl = host.querySelector('.cd-mins .num')
+      const secsEl = host.querySelector('.cd-secs .num')
+      if (daysEl) daysEl.textContent = pad(d)
+      if (hoursEl) hoursEl.textContent = pad(h)
+      if (minsEl) minsEl.textContent = pad(m)
+      if (secsEl) secsEl.textContent = pad(sec)
+      if (label) {
+        const y = target.getFullYear()
+        label.textContent = '27 Feb ' + y
+      }
+    }
+    render()
+    setInterval(render, 1000)
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     mountIndex()
     mountStories()
     mountStory()
     installProgress()
+    installBirthdayCountdown()
     // Floating "All Stories" button
     try {
       const isStories = /(?:^|\/)stories\.html$/i.test(location.pathname)
